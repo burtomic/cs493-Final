@@ -12,11 +12,9 @@ const {
 } = require('../models/users');
 const { generateAuthToken, requireAuthentication, checkAuthentication } = require('../lib/auth');
 
-
-
-
 router.post('/', checkAuthentication, async (req, res) => {
-  if((req.body.role == "instructor" || req.body.role == "admin")  && !req.role != "admin") {
+
+  if((req.body.role == "instructor" || req.body.role == "admin")  && req.role != "admin") {
     res.status(403).send({
       error: "Must be logged in as admin to create another admin."
     });
@@ -42,9 +40,8 @@ router.post('/', checkAuthentication, async (req, res) => {
 });
 
 router.get('/:id', requireAuthentication, async (req, res, next) => {
-  console.log("role:", req.role);
-  //console.log(req);
-  if (req.user !== req.params.id && req.role != "admin") {
+
+  if (req.user !== req.params.id) {
     console.log(req.user);
     res.status(403).send({
       error: "Unauthorized to access the specified resource"
@@ -74,8 +71,9 @@ router.post('/login', async (req, res) => {
         req.body.email,
         req.body.password
       );
+      console.log(req.body.email);
       if (authenticated) {
-        const user =  await getUserByEmail(req.body.email);
+        const user =  await getUserByEmail(req.body.email, false);
         console.log("User:", user)
         const token = generateAuthToken(user.id, user.role);
         res.status(200).send({

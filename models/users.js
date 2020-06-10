@@ -35,14 +35,14 @@ const UserSchema = {
     if(includePassword) {
         const [ results ] = await mysqlPool.query(
             'SELECT * FROM users WHERE id = ?',
-            [ id ]
+            id
         );
         return results[0];
 
     } else {
         const [ results ] = await mysqlPool.query(
             'SELECT id, name, email, role FROM users WHERE id = ?',
-            [ id ]
+            id
         );
         console.log("results:", results[0]);
         return results[0];
@@ -53,15 +53,16 @@ const UserSchema = {
     if(includePassword) {
         const [ results ] = await mysqlPool.query(
             'SELECT * FROM users WHERE email = ?',
-            [ id ]
+            id
         );
         return results[0];
 
     } else {
         const [ results ] = await mysqlPool.query(
-            'SELECT * from users'
+          'SELECT id, name, email, role FROM users WHERE email = ?',
+          id
         );
-        return results;
+        return results[0];
     }
   };
   

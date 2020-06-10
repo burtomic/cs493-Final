@@ -107,7 +107,7 @@ CREATE TABLE `assignments` (
   `courseId` mediumint(9) NOT NULL,
   `title` varchar(255) NOT NULL,
   `points` mediumint(9) NOT NULL,
-  `due` varchar(255) NOT NULL,
+  `due` datetime NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `assignments_ibfk_1` FOREIGN KEY (`courseId`) REFERENCES `courses` (`number`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
@@ -120,16 +120,16 @@ CREATE TABLE `assignments` (
 LOCK TABLES `assignments` WRITE;
 /*!40000 ALTER TABLE `assignments` DISABLE KEYS */;
 INSERT INTO `assignments` VALUES
-  (1,NULL,11,15),
-  (2,NULL,7,2),
-  (3,'Hops',2,3),
-  (4,'Sticky Hands',14,18),
-  (5,NULL,5,2),
-  (6,'Popcorn!',11,7),
-  (7,'This is my dinner.',8,5),
-  (8,'Big fermentor',5,18),
-  (9,'Cake!',6,16),
-  (10,NULL,2,5);
+  (1,'Hops2',11,"2020-06-12 13:20:00"),
+  (2,'Hops21',7,"2020-06-12 13:20:00"),
+  (3,'Hops',2,"2020-06-12 13:20:00"),
+  (4,'Sticky Hands',14,"2020-06-12 13:20:00"),
+  (5,'Hops34',5,"2020-06-12 13:20:00"),
+  (6,'Popcorn!',11,"2020-06-12 13:20:00"),
+  (7,'This is my dinner.',8,"2020-06-12 13:20:00"),
+  (8,'Big fermentor',5,"2020-06-12 13:20:00"),
+  (9,'Cake!',6,"2020-06-12 13:20:00"),
+  (10,'Hops52',2,"2020-06-12 13:20:00");
 /*!40000 ALTER TABLE `assignments` ENABLE KEYS */;
 UNLOCK TABLES;
 
